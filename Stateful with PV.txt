@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ngnix22
+  labels:
+    app: ngnix
+spec:
+  serviceName: ngnix
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ngnix
+  template:
+    metadata:
+      labels:
+        app: ngnix
+    spec:
+      containers:
+        - name: ngnix22
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+              name: web
+          volumeMounts:
+            - name: kapilpv
+              mountPath: /var/www/html1
+      volumes:
+        - name: kapilpv
+          persistentVolumeClaim:
+            claimName: kapilclaimpvc

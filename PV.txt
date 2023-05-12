@@ -1,0 +1,16 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: kapilpv
+  namespace: kapil
+  labels:
+    app: nginx
+    release: nginx
+spec:
+  storageClassName: nginx
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /var/www/html1
